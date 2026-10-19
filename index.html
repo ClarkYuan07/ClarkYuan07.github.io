@@ -1,80 +1,424 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>422球鞋网
-  </title>
+  <title>422球鞋网 · 实战球鞋实测评分</title>
+  <meta name="description" content="422球鞋网：AJ37 与 AE2 实战篮球鞋的十维度实测评分，优点写清楚，硬伤也不藏，买前先看分数。">
+  <meta name="theme-color" content="#f7f5f1">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161513'/%3E%3Ccircle cx='32' cy='32' r='11' fill='%23ff4f14'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <h1>422球鞋网</h1>
-  <h2>AJ37</h2>
-  <img src="images/aj37.jpg" alt="" width="270" height="180">
-  <p>简介：一双被神话的鞋子，不建议学生党购入，因为耐久有硬伤，另外想要安全感的慎入</p>
-  <a href="https://item.taobao.com/item.htm?abbucket=6&id=721712148971&loginBonus=1&mi_id=0000R_ZyjYBP1Zm_CdwsHnZdx0WiS-aozKNdXAVilCj0H1E&ns=1&priceTId=2150434717916404154048724e11cb&skuId=5682038775069&spm=a21n57.sem.item.1.9afb3903AdXQ6Q&utparam=%7B%22aplus_abtest%22%3A%22b32259eaafa296b5eaec8b597f374e68%22%7D&xxc=taobaoSearch" target="_blank">购买</a>
-  <table border="1">
-    <tr>
-      <th>属性</th>
-      <th>包裹</th>
-      <th>缓震</th>
-      <th>透气</th>
-      <th>重量</th>
-      <th>耐久</th>
-      <th>抓地</th>
-      <th>支撑</th>
-      <th>外观</th>
-      <th>价格</th>
-      <th>安全</th>
-      <th>平均</th>
-    </tr>
-    <tr>
-      <th>评分</th>
-      <td>3</td>
-      <td>8</td>
-      <td>10</td>
-      <td>10</td>
-      <td>4</td>
-      <td>6</td>
-      <td>4</td>
-      <td>8</td>
-      <td>6</td>
-      <td>4</td>
-      <td>6.3</td>
-    </tr>
-  </table>
-  <h2>ae2</h2>
-  <img src="images/ae2.jpg" alt="" width="270" height="180">
-  <p>一个水桶鞋，虽然很沉但是性能足够拯救这一点，2开定价学生党友好，耐操，至于颜值…见仁见智</p>
-  <a href="https://item.taobao.com/item.htm?abbucket=6&id=1086943623545&loginBonus=1&mi_id=0000D2BXWGSii9YG8eSUJCctaSrNPJVt4k7vncff8nZrg3o&ns=1&priceTId=2150434717916405972655474e11cb&skuId=6308167547420&spm=a21n57.sem.item.4.14633903DAcdNo&utparam=%7B%22aplus_abtest%22%3A%2265032d08009b4cd6148534f0485f309a%22%7D&xxc=taobaoSearch" target="_blank">购买</a>
-  <table border="1">
-    <tr>
-      <th>属性</th>
-      <th>包裹</th>
-      <th>缓震</th>
-      <th>透气</th>
-      <th>重量</th>
-      <th>耐久</th>
-      <th>抓地</th>
-      <th>支撑</th>
-      <th>外观</th>
-      <th>价格</th>
-      <th>安全</th>
-      <th>平均</th>
-    </tr>
-    <tr>
-      <th>评分</th>
-      <td>8</td>
-      <td>8</td>
-      <td>4</td>
-      <td>4</td>
-      <td>8</td>
-      <td>6</td>
-      <td>8</td>
-      <td>4</td>
-      <td>8</td>
-      <td>8</td>
-      <td>6.6</td>
-    </tr>
-  </table>
+<body id="top">
+  <a class="skip-link" href="#reviews">跳到评测内容</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="422球鞋网，回到顶部">
+        <span class="brand-mark" aria-hidden="true">422</span>
+        <span class="brand-text">
+          <strong>球鞋网</strong>
+          <small>Sneaker Review</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="#reviews">球鞋评测</a>
+        <a href="#about">关于评分</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Real Court Test · 实战实测</p>
+        <h1 id="hero-title">不吹不黑，<br><em>用分数</em>说话。</h1>
+        <p class="lead">七双热门实战篮球鞋，从包裹到安全共十个维度逐项打分。优点写清楚，硬伤也不藏，买之前先看分数。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#reviews">
+            查看本期评测
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h9M8.5 3.5 13 8l-4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="btn btn-ghost" href="#about">评分怎么打</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="评测数据概览">
+        <p class="panel-label">数据概览 <span>Data</span></p>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num">07</span>
+            <span class="stat-label">双实战鞋</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">10</span>
+            <span class="stat-label">项评分维度</span>
+          </div>
+          <div class="stat stat--accent">
+            <span class="stat-num">6.93</span>
+            <span class="stat-label">平均总分</span>
+          </div>
+        </div>
+        <p class="panel-note">满分 10 分，分数基于个人实战后的主观体验，仅供参考。</p>
+      </aside>
+    </section>
+
+    <section id="reviews" class="reviews wrap" aria-labelledby="reviews-title">
+      <div class="section-head">
+        <h2 id="reviews-title">本期评测</h2>
+        <p>7 双球鞋 · 10 个维度 · 满分 10 分</p>
+      </div>
+
+      <div class="card-grid">
+
+        <article class="shoe-card" aria-labelledby="shoe-aj37">
+          <div class="card-media">
+            <span class="rank" aria-hidden="true">01</span>
+            <span class="avg-badge" style="--avg: 6.3" role="img" aria-label="AJ37 平均分 6.3 分">
+              <span class="avg-badge-inner"><b>6.3</b><small>平均</small></span>
+            </span>
+            <img src="images/aj37.jpg" alt="白色 Jordan AJ37 篮球鞋侧面" width="2112" height="1440" decoding="async">
+          </div>
+
+          <div class="card-body">
+            <p class="kicker">Jordan · 实战篮球鞋</p>
+            <h3 class="card-title" id="shoe-aj37">AJ37</h3>
+            <ul class="tags" aria-label="突出项">
+              <li>透气 10</li>
+              <li>重量 10</li>
+            </ul>
+            <p class="desc">一双被神话的鞋子，不建议学生党购入，因为耐久有硬伤，另外想要安全感的慎入。</p>
+
+            <div class="score-block">
+              <div class="score-head">
+                <h4>实测评分</h4>
+                <span>满分 10</span>
+              </div>
+              <ul class="scores" aria-label="AJ37 各维度评分">
+                <li><span class="score-label">包裹</span><span class="bar" aria-hidden="true"><i style="--score: 3;"></i></span><span class="score-num">3</span></li>
+                <li><span class="score-label">缓震</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">透气</span><span class="bar" aria-hidden="true"><i style="--score: 10;"></i></span><span class="score-num">10</span></li>
+                <li><span class="score-label">重量</span><span class="bar" aria-hidden="true"><i style="--score: 10;"></i></span><span class="score-num">10</span></li>
+                <li><span class="score-label">耐久</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+                <li><span class="score-label">抓地</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">支撑</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+                <li><span class="score-label">外观</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">价格</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">安全</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+              </ul>
+            </div>
+
+            <a class="btn btn-buy" href="https://item.taobao.com/item.htm?abbucket=6&amp;id=721712148971&amp;loginBonus=1&amp;mi_id=0000R_ZyjYBP1Zm_CdwsHnZdx0WiS-aozKNdXAVilCj0H1E&amp;ns=1&amp;priceTId=2150434717916404154048724e11cb&amp;skuId=5682038775069&amp;spm=a21n57.sem.item.1.9afb3903AdXQ6Q&amp;utparam=%7B%22aplus_abtest%22%3A%22b32259eaafa296b5eaec8b597f374e68%22%7D&amp;xxc=taobaoSearch" target="_blank" rel="noopener noreferrer">
+              <span>去淘宝看看</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="shoe-card" aria-labelledby="shoe-ae2">
+          <div class="card-media card-media--ae2">
+            <span class="rank" aria-hidden="true">02</span>
+            <span class="avg-badge" style="--avg: 6.6" role="img" aria-label="AE2 平均分 6.6 分">
+              <span class="avg-badge-inner"><b>6.6</b><small>平均</small></span>
+            </span>
+            <img src="images/ae2.jpg" alt="黑色 adidas AE2 篮球鞋侧面" width="2431" height="1440" decoding="async">
+          </div>
+
+          <div class="card-body">
+            <p class="kicker">adidas · 实战篮球鞋</p>
+            <h3 class="card-title" id="shoe-ae2">AE2</h3>
+            <ul class="tags" aria-label="突出项">
+              <li>包裹 8</li>
+              <li>耐久 8</li>
+              <li>价格 8</li>
+            </ul>
+            <p class="desc">一个水桶鞋，虽然很沉但是性能足够拯救这一点，2 开定价学生党友好，耐操，至于颜值…见仁见智。</p>
+
+            <div class="score-block">
+              <div class="score-head">
+                <h4>实测评分</h4>
+                <span>满分 10</span>
+              </div>
+              <ul class="scores" aria-label="AE2 各维度评分">
+                <li><span class="score-label">包裹</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">缓震</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">透气</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+                <li><span class="score-label">重量</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+                <li><span class="score-label">耐久</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">抓地</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">支撑</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">外观</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+                <li><span class="score-label">价格</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">安全</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+              </ul>
+            </div>
+
+            <a class="btn btn-buy" href="https://item.taobao.com/item.htm?abbucket=6&amp;id=1086943623545&amp;loginBonus=1&amp;mi_id=0000D2BXWGSii9YG8eSUJCctaSrNPJVt4k7vncff8nZrg3o&amp;ns=1&amp;priceTId=2150434717916405972655474e11cb&amp;skuId=6308167547420&amp;spm=a21n57.sem.item.4.14633903DAcdNo&amp;utparam=%7B%22aplus_abtest%22%3A%2265032d08009b4cd6148534f0485f309a%22%7D&amp;xxc=taobaoSearch" target="_blank" rel="noopener noreferrer">
+              <span>去淘宝看看</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="shoe-card" aria-labelledby="shoe-liren6">
+          <div class="card-media card-media--cover">
+            <span class="rank" aria-hidden="true">03</span>
+            <span class="avg-badge" style="--avg: 7.2" role="img" aria-label="利刃6 平均分 7.2 分">
+              <span class="avg-badge-inner"><b>7.2</b><small>平均</small></span>
+            </span>
+            <img src="images/liren6.jpg" alt="黑紫配色李宁利刃6 篮球鞋侧面" width="1206" height="1204" decoding="async">
+          </div>
+
+          <div class="card-body">
+            <p class="kicker">李宁 · 实战篮球鞋</p>
+            <h3 class="card-title" id="shoe-liren6">利刃6</h3>
+            <ul class="tags" aria-label="突出项">
+              <li>价格 10</li>
+              <li>包裹 8</li>
+              <li>耐久 8</li>
+            </ul>
+            <p class="desc">表格暂无详细上脚文字，价格项拿到 10 分，包裹、耐久与支撑均为 8 分。</p>
+
+            <div class="score-block">
+              <div class="score-head">
+                <h4>实测评分</h4>
+                <span>满分 10</span>
+              </div>
+              <ul class="scores" aria-label="利刃6 各维度评分">
+                <li><span class="score-label">包裹</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">缓震</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">透气</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">重量</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">耐久</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">抓地</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">支撑</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">外观</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">价格</span><span class="bar" aria-hidden="true"><i style="--score: 10;"></i></span><span class="score-num">10</span></li>
+                <li><span class="score-label">安全</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+              </ul>
+            </div>
+
+            <a class="btn btn-buy" href="https://s.taobao.com/search?q=%E5%88%A9%E5%88%836" target="_blank" rel="noopener noreferrer">
+              <span>去淘宝搜索</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="shoe-card" aria-labelledby="shoe-shanji10">
+          <div class="card-media card-media--cover">
+            <span class="rank" aria-hidden="true">04</span>
+            <span class="avg-badge" style="--avg: 7.0" role="img" aria-label="闪击10 平均分 7.0 分">
+              <span class="avg-badge-inner"><b>7.0</b><small>平均</small></span>
+            </span>
+            <img src="images/shanji10.jpg" alt="白黑金配色李宁闪击10 篮球鞋侧面" width="1206" height="1199" decoding="async">
+          </div>
+
+          <div class="card-body">
+            <p class="kicker">李宁 · 实战篮球鞋</p>
+            <h3 class="card-title" id="shoe-shanji10">闪击10</h3>
+            <ul class="tags" aria-label="突出项">
+              <li>价格 9</li>
+              <li>重量 8</li>
+              <li>包裹 8</li>
+            </ul>
+            <p class="desc">表格暂无详细上脚文字，价格 9 分、重量 8 分，整体表现比较均衡。</p>
+
+            <div class="score-block">
+              <div class="score-head">
+                <h4>实测评分</h4>
+                <span>满分 10</span>
+              </div>
+              <ul class="scores" aria-label="闪击10 各维度评分">
+                <li><span class="score-label">包裹</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">缓震</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">透气</span><span class="bar" aria-hidden="true"><i style="--score: 7;"></i></span><span class="score-num">7</span></li>
+                <li><span class="score-label">重量</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">耐久</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">抓地</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">支撑</span><span class="bar" aria-hidden="true"><i style="--score: 7;"></i></span><span class="score-num">7</span></li>
+                <li><span class="score-label">外观</span><span class="bar" aria-hidden="true"><i style="--score: 7;"></i></span><span class="score-num">7</span></li>
+                <li><span class="score-label">价格</span><span class="bar" aria-hidden="true"><i style="--score: 9;"></i></span><span class="score-num">9</span></li>
+                <li><span class="score-label">安全</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+              </ul>
+            </div>
+
+            <a class="btn btn-buy" href="https://s.taobao.com/search?q=%E9%97%AA%E5%87%BB10" target="_blank" rel="noopener noreferrer">
+              <span>去淘宝搜索</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="shoe-card" aria-labelledby="shoe-zion1">
+          <div class="card-media card-media--cover">
+            <span class="rank" aria-hidden="true">05</span>
+            <span class="avg-badge" style="--avg: 7.6" role="img" aria-label="Zion 1 平均分 7.6 分">
+              <span class="avg-badge-inner"><b>7.6</b><small>平均</small></span>
+            </span>
+            <img src="images/zion1.jpg" alt="白粉配色 Jordan Zion 1 篮球鞋侧面" width="1206" height="1191" decoding="async">
+          </div>
+
+          <div class="card-body">
+            <p class="kicker">Jordan · 实战篮球鞋</p>
+            <h3 class="card-title" id="shoe-zion1">Zion 1</h3>
+            <ul class="tags" aria-label="突出项">
+              <li>安全 10</li>
+              <li>支撑 8</li>
+              <li>外观 8</li>
+            </ul>
+            <p class="desc">表格暂无详细上脚文字，安全项满分，支撑与外观均为 8 分。</p>
+
+            <div class="score-block">
+              <div class="score-head">
+                <h4>实测评分</h4>
+                <span>满分 10</span>
+              </div>
+              <ul class="scores" aria-label="Zion 1 各维度评分">
+                <li><span class="score-label">包裹</span><span class="bar" aria-hidden="true"><i style="--score: 7;"></i></span><span class="score-num">7</span></li>
+                <li><span class="score-label">缓震</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">透气</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">重量</span><span class="bar" aria-hidden="true"><i style="--score: 7;"></i></span><span class="score-num">7</span></li>
+                <li><span class="score-label">耐久</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">抓地</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">支撑</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">外观</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">价格</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">安全</span><span class="bar" aria-hidden="true"><i style="--score: 10;"></i></span><span class="score-num">10</span></li>
+              </ul>
+            </div>
+
+            <a class="btn btn-buy" href="https://s.taobao.com/search?q=Zion%201" target="_blank" rel="noopener noreferrer">
+              <span>去淘宝搜索</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="shoe-card" aria-labelledby="shoe-zion2">
+          <div class="card-media card-media--cover">
+            <span class="rank" aria-hidden="true">06</span>
+            <span class="avg-badge" style="--avg: 7.1" role="img" aria-label="Zion 2 平均分 7.1 分">
+              <span class="avg-badge-inner"><b>7.1</b><small>平均</small></span>
+            </span>
+            <img src="images/zion2.jpg" alt="蓝黑配色 Jordan Zion 2 篮球鞋侧面" width="1206" height="1198" decoding="async">
+          </div>
+
+          <div class="card-body">
+            <p class="kicker">Jordan · 实战篮球鞋</p>
+            <h3 class="card-title" id="shoe-zion2">Zion 2</h3>
+            <ul class="tags" aria-label="突出项">
+              <li>包裹 8</li>
+              <li>支撑 8</li>
+              <li>外观 8</li>
+            </ul>
+            <p class="desc">表格暂无详细上脚文字，多项 8 分，透气只有 4 分是明显短板。</p>
+
+            <div class="score-block">
+              <div class="score-head">
+                <h4>实测评分</h4>
+                <span>满分 10</span>
+              </div>
+              <ul class="scores" aria-label="Zion 2 各维度评分">
+                <li><span class="score-label">包裹</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">缓震</span><span class="bar" aria-hidden="true"><i style="--score: 7;"></i></span><span class="score-num">7</span></li>
+                <li><span class="score-label">透气</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+                <li><span class="score-label">重量</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">耐久</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">抓地</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">支撑</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">外观</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">价格</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">安全</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+              </ul>
+            </div>
+
+            <a class="btn btn-buy" href="https://s.taobao.com/search?q=Zion%202" target="_blank" rel="noopener noreferrer">
+              <span>去淘宝搜索</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+        <article class="shoe-card" aria-labelledby="shoe-zion3">
+          <div class="card-media card-media--cover">
+            <span class="rank" aria-hidden="true">07</span>
+            <span class="avg-badge" style="--avg: 6.7" role="img" aria-label="Zion 3 平均分 6.7 分">
+              <span class="avg-badge-inner"><b>6.7</b><small>平均</small></span>
+            </span>
+            <img src="images/zion3.jpg" alt="粉色 Jordan Zion 3 篮球鞋侧面" width="1206" height="1191" decoding="async">
+          </div>
+
+          <div class="card-body">
+            <p class="kicker">Jordan · 实战篮球鞋</p>
+            <h3 class="card-title" id="shoe-zion3">Zion 3</h3>
+            <ul class="tags" aria-label="突出项">
+              <li>包裹 8</li>
+              <li>缓震 8</li>
+              <li>支撑 8</li>
+            </ul>
+            <p class="desc">表格暂无详细上脚文字，包裹与缓震 8 分，抓地仅 2 分，短板很明显。</p>
+
+            <div class="score-block">
+              <div class="score-head">
+                <h4>实测评分</h4>
+                <span>满分 10</span>
+              </div>
+              <ul class="scores" aria-label="Zion 3 各维度评分">
+                <li><span class="score-label">包裹</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">缓震</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">透气</span><span class="bar" aria-hidden="true"><i style="--score: 6;"></i></span><span class="score-num">6</span></li>
+                <li><span class="score-label">重量</span><span class="bar" aria-hidden="true"><i style="--score: 7;"></i></span><span class="score-num">7</span></li>
+                <li><span class="score-label">耐久</span><span class="bar" aria-hidden="true"><i style="--score: 4;"></i></span><span class="score-num">4</span></li>
+                <li><span class="score-label">抓地</span><span class="bar" aria-hidden="true"><i style="--score: 2;"></i></span><span class="score-num">2</span></li>
+                <li><span class="score-label">支撑</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">外观</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">价格</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+                <li><span class="score-label">安全</span><span class="bar" aria-hidden="true"><i style="--score: 8;"></i></span><span class="score-num">8</span></li>
+              </ul>
+            </div>
+
+            <a class="btn btn-buy" href="https://s.taobao.com/search?q=Zion%203" target="_blank" rel="noopener noreferrer">
+              <span>去淘宝搜索</span>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer id="about" class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-title">关于评分</p>
+          <p>评分覆盖包裹、缓震、透气、重量、耐久、抓地、支撑、外观、价格与安全十个维度，每项满分 10 分，平均分保留一位小数。所有分数均为个人实战后的主观感受，仅供选购参考。</p>
+        </div>
+        <a class="footer-link" href="#top">回到顶部 ↑</a>
+      </div>
+      <div class="copyright">
+        <span>© 2026 422球鞋网</span>
+        <span>实战说话，不吹不黑。</span>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
