@@ -1093,12 +1093,60 @@
       layout: "left",
       position: "center 45%",
     },
+    {
+      src: "images/memories/china-community-court.jpg",
+      kicker: "中国 · 城市社区",
+      title: "楼下的球场",
+      note: "楼宇之间，一块球场就够孩子们跑一个下午。",
+      layout: "portrait-left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/china-schoolyard.jpg",
+      kicker: "中国 · 放学以后",
+      title: "再打一会儿",
+      note: "书包放在场边，回家的事可以再等一球。",
+      layout: "portrait-right",
+      position: "center 40%",
+    },
+    {
+      src: "images/memories/china-school-game.jpg",
+      kicker: "中国 · 校园联赛",
+      title: "校队的一天",
+      note: "没有聚光灯，只有队友、教练和一场想赢的比赛。",
+      layout: "left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/china-school-court.jpg",
+      kicker: "中国 · 校园球馆",
+      title: "青春在场",
+      note: "汗水落在木地板上，青春有了具体的声音。",
+      layout: "portrait-right",
+      position: "center 40%",
+    },
+    {
+      src: "images/memories/china-neighborhood-game.jpg",
+      kicker: "中国 · 社区球场",
+      title: "开赛之前",
+      note: "一排人站在场边，等哨声，也等一个一起打球的人。",
+      layout: "wide",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/hongkong-kowloon-courts.jpg",
+      kicker: "香港 · 九龙",
+      title: "城市上空的球场",
+      note: "在密集的楼宇之间，球场是留给呼吸的地方。",
+      layout: "wide",
+      position: "center 50%",
+    },
   ];
 
   const ORDER = [
-    0, 5, 1, 6, 2, 20, 3, 23, 4, 13,
-    7, 10, 18, 25, 22, 11, 12, 15, 24, 17,
-    14, 16, 21, 19, 26, 8, 9,
+    0, 5, 27, 1, 6, 28, 2, 20, 3, 23, 4, 13,
+    29, 7, 10, 18, 25, 22, 11, 12, 30, 15, 24, 17,
+    14, 31, 16, 21, 32, 19, 26, 8, 9,
   ];
   ORDER.splice(13, 0, 0);
   ORDER.splice(24, 0, 1);
