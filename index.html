@@ -14,7 +14,7 @@
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="422球鞋网，回到顶部">
+      <a class="brand" href="#home" aria-label="422球鞋网，返回首页">
         <span class="brand-mark" aria-hidden="true">422</span>
         <span class="brand-text">
           <strong>球鞋网</strong>
@@ -22,13 +22,14 @@
         </span>
       </a>
       <nav class="site-nav" aria-label="主导航">
-        <a href="#reviews">球鞋评测</a>
-        <a href="#about">关于评分</a>
+        <a href="#home" data-view-link="home" aria-current="page">首页</a>
+        <a href="#brands" data-view-link="brands">品牌分类</a>
       </nav>
     </div>
   </header>
 
   <main>
+    <div class="view" id="home-view">
     <section class="hero wrap" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">Real Court Test · 实战实测</p>
@@ -516,6 +517,85 @@
         <button class="btn btn-ghost" type="button" id="shoe-search-reset">清空搜索和筛选</button>
       </div>
     </section>
+    </div>
+
+    <div class="view" id="brands-view" hidden>
+      <section class="brands-hero wrap" id="brands-hero" aria-labelledby="brands-title">
+        <p class="eyebrow">Brand Index · 品牌分类</p>
+        <h1 id="brands-title">从品牌开始，<br>找到下一双。</h1>
+        <p class="lead">Jordan、Nike、Adidas 与李宁，点击品牌查看对应鞋型和实测评分。</p>
+      </section>
+
+      <section class="brand-index wrap" id="brand-index" aria-labelledby="brand-index-title">
+        <div class="section-head">
+          <h2 id="brand-index-title">全部品牌</h2>
+          <p>4 个品牌 · 7 双鞋型</p>
+        </div>
+
+        <div class="brand-grid">
+          <a class="brand-card" href="#brand/jordan" data-brand="jordan">
+            <span class="brand-icon brand-icon--jordan" aria-hidden="true">
+              <img class="brand-logo" src="brands/jordan.png" alt="">
+            </span>
+            <span class="brand-card-copy">
+              <span class="brand-card-name">Jordan</span>
+              <span class="brand-card-en">Jumpman</span>
+              <span class="brand-card-count" data-brand-count="jordan">4 款鞋型</span>
+            </span>
+            <span class="brand-card-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="brand-card" href="#brand/nike" data-brand="nike">
+            <span class="brand-icon brand-icon--nike" aria-hidden="true">
+              <img class="brand-logo" src="brands/nike.png" alt="">
+            </span>
+            <span class="brand-card-copy">
+              <span class="brand-card-name">Nike</span>
+              <span class="brand-card-en">Swoosh</span>
+              <span class="brand-card-count" data-brand-count="nike">4 款鞋型</span>
+            </span>
+            <span class="brand-card-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="brand-card" href="#brand/adidas" data-brand="adidas">
+            <span class="brand-icon brand-icon--adidas" aria-hidden="true">
+              <img class="brand-logo" src="brands/adidas.png" alt="">
+            </span>
+            <span class="brand-card-copy">
+              <span class="brand-card-name">Adidas</span>
+              <span class="brand-card-en">Three Stripes</span>
+              <span class="brand-card-count" data-brand-count="adidas">1 款鞋型</span>
+            </span>
+            <span class="brand-card-arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="brand-card" href="#brand/lining" data-brand="lining">
+            <span class="brand-icon brand-icon--lining" aria-hidden="true">
+              <img class="brand-logo" src="brands/lining.png" alt="">
+            </span>
+            <span class="brand-card-copy">
+              <span class="brand-card-name">李宁</span>
+              <span class="brand-card-en">Li-Ning</span>
+              <span class="brand-card-count" data-brand-count="lining">2 款鞋型</span>
+            </span>
+            <span class="brand-card-arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="brand-detail wrap" id="brand-detail" hidden aria-labelledby="brand-detail-title">
+        <a class="brand-back" href="#brands">← 返回品牌分类</a>
+        <div class="brand-detail-head">
+          <span class="brand-icon brand-icon--detail" id="brand-detail-icon" aria-hidden="true"></span>
+          <div>
+            <p class="kicker">Brand · 品牌</p>
+            <h1 class="brand-detail-title" id="brand-detail-title"></h1>
+            <p class="brand-detail-meta" id="brand-detail-meta"></p>
+          </div>
+        </div>
+        <div class="brand-models" id="brand-models"></div>
+      </section>
+    </div>
   </main>
 
   <footer id="about" class="site-footer">

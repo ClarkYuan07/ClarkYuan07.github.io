@@ -210,6 +210,14 @@
     requestAnimationFrame(() => ui.close.focus());
   };
 
+  document.addEventListener("shoe:open", (event) => {
+    const cardId = event.detail?.cardId;
+    const card = cardId
+      ? document.getElementById(cardId)?.closest(".shoe-card")
+      : null;
+    if (card) openCard(card, event.detail?.trigger ?? null);
+  });
+
   for (const card of document.querySelectorAll(".shoe-card")) {
     const title = card.querySelector(".card-title")?.textContent.trim() ?? "球鞋";
     const button = document.createElement("button");
@@ -449,4 +457,220 @@
   });
 
   applyFilter();
+})();
+
+(() => {
+  const homeView = document.querySelector("#home-view");
+  const brandsView = document.querySelector("#brands-view");
+  if (!homeView || !brandsView) return;
+
+  const brandsHero = document.querySelector("#brands-hero");
+  const brandIndex = document.querySelector("#brand-index");
+  const brandDetail = document.querySelector("#brand-detail");
+  const brandDetailIcon = document.querySelector("#brand-detail-icon");
+  const brandDetailTitle = document.querySelector("#brand-detail-title");
+  const brandDetailMeta = document.querySelector("#brand-detail-meta");
+  const brandModels = document.querySelector("#brand-models");
+  const navLinks = [...document.querySelectorAll("[data-view-link]")];
+
+  const BRANDS = {
+    jordan: { name: "Jordan" },
+    nike: { name: "Nike" },
+    adidas: { name: "Adidas" },
+    lining: { name: "李宁" },
+  };
+
+  const BRAND_ALIASES = {
+    Jordan: "jordan",
+    Nike: "nike",
+    Adidas: "adidas",
+    "李宁": "lining",
+  };
+
+  const cards = [...document.querySelectorAll("#shoe-grid .shoe-card")];
+  const brandCards = [...document.querySelectorAll(".brand-card")];
+  const brandCardMap = new Map(
+    brandCards.map((card) => [card.dataset.brand, card]),
+  );
+  const defaultTitle = document.title;
+
+  const brandKeysFor = (card) =>
+    (card.dataset.brand || "")
+      .split(",")
+      .map((value) => BRAND_ALIASES[value.trim()] || value.trim().toLowerCase())
+      .filter(Boolean);
+
+  const modelsFor = (key) =>
+    cards.filter((card) => brandKeysFor(card).includes(key));
+
+  const modelsByBrand = new Map(
+    Object.keys(BRANDS).map((key) => [key, modelsFor(key)]),
+  );
+
+  for (const card of brandCards) {
+    const models = modelsByBrand.get(card.dataset.brand) || [];
+    const count = card.querySelector("[data-brand-count]");
+    if (count) count.textContent = `${models.length} 款鞋型`;
+  }
+
+  const createModelTile = (card) => {
+    const titleNode = card.querySelector(".card-title");
+    const imageNode = card.querySelector(".card-media img");
+    const average = card.querySelector(".avg-badge b")?.textContent.trim() ?? "—";
+    const title = titleNode?.textContent.trim() ?? "球鞋";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "brand-model";
+    button.setAttribute("aria-label", `${title}：查看详情`);
+    button.setAttribute("aria-haspopup", "dialog");
+
+    const media = document.createElement("span");
+    media.className = "brand-model-media";
+
+    const image = document.createElement("img");
+    image.src = imageNode.currentSrc || imageNode.src;
+    image.alt = imageNode.alt;
+    image.loading = "lazy";
+    image.decoding = "async";
+    if (card.querySelector(".card-media--ae2")) {
+      image.classList.add("is-bright");
+    }
+
+    media.append(image);
+
+    const info = document.createElement("span");
+    info.className = "brand-model-info";
+
+    const name = document.createElement("span");
+    name.className = "brand-model-name";
+    name.textContent = title;
+
+    const score = document.createElement("span");
+    score.className = "brand-model-score";
+    score.textContent = `平均 ${average}`;
+
+    info.append(name, score);
+    button.append(media, info);
+
+    button.addEventListener("click", () => {
+      document.dispatchEvent(
+        new CustomEvent("shoe:open", {
+          detail: { cardId: titleNode?.id, trigger: button },
+        }),
+      );
+    });
+
+    return button;
+  };
+
+  const scrollTop = () => {
+    const previous = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = "auto";
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = previous;
+  };
+
+  const showView = (view) => {
+    homeView.hidden = view !== "home";
+    brandsView.hidden = view !== "brands";
+
+    for (const link of navLinks) {
+      if (link.dataset.viewLink === view) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    }
+  };
+
+  const showBrandIndex = () => {
+    brandsHero.hidden = false;
+    brandIndex.hidden = false;
+    brandDetail.hidden = true;
+    document.title = "品牌分类 · 422球鞋网";
+  };
+
+  const showBrandDetail = (key) => {
+    const brand = BRANDS[key];
+    const brandCard = brandCardMap.get(key);
+    const models = modelsByBrand.get(key) || [];
+
+    if (!brand || !brandCard) return false;
+
+    const sourceIcon = brandCard.querySelector(".brand-icon");
+    brandsHero.hidden = true;
+    brandIndex.hidden = true;
+    brandDetail.hidden = false;
+
+    brandDetailIcon.className = `${sourceIcon.className} brand-icon--detail`;
+    brandDetailIcon.innerHTML = sourceIcon.innerHTML;
+    brandDetailTitle.textContent = brand.name;
+
+    const average = models.length
+      ? models.reduce(
+          (total, card) =>
+            total +
+            (Number(card.querySelector(".avg-badge b")?.textContent) || 0),
+          0,
+        ) / models.length
+      : 0;
+
+    brandDetailMeta.textContent = models.length
+      ? `${models.length} 款鞋型 · 平均 ${average.toFixed(1)} 分`
+      : "暂无鞋款";
+
+    brandModels.replaceChildren(...models.map(createModelTile));
+    document.title = `${brand.name} · 品牌分类 · 422球鞋网`;
+    return true;
+  };
+
+  const route = () => {
+    const hash = decodeURIComponent(location.hash.replace(/^#/, ""));
+
+    if (hash.startsWith("brand/")) {
+      const key = hash.slice("brand/".length);
+      showView("brands");
+
+      if (!showBrandDetail(key)) {
+        showBrandIndex();
+        history.replaceState(null, "", "#brands");
+      }
+
+      scrollTop();
+      return;
+    }
+
+    if (hash === "brands") {
+      showView("brands");
+      showBrandIndex();
+      scrollTop();
+      return;
+    }
+
+    if (hash === "top") {
+      scrollTop();
+      return;
+    }
+
+    showView("home");
+    document.title = defaultTitle;
+
+    if (hash === "home") {
+      scrollTop();
+      return;
+    }
+
+    if (!hash) return;
+
+    const target = document.getElementById(hash);
+    if (target) {
+      requestAnimationFrame(() =>
+        target.scrollIntoView({ block: "start" }),
+      );
+    }
+  };
+
+  window.addEventListener("hashchange", route);
+  route();
 })();

@@ -1,0 +1,7 @@
+# Local preview screenshots
+preview-*.png
+preview.jpg
+
+# Original brand logo sources (processed PNGs are committed)
+brands/*.jpg
+brands/李宁.png
