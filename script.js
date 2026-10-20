@@ -1182,5 +1182,5 @@
 
     index = (index + 1) % slides.length;
     show(index);
-  }, 8000);
+  }, 6500);
 })();
