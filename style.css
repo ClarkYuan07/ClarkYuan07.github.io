@@ -281,6 +281,19 @@ a {
   box-shadow: 0 30px 60px -50px rgba(22, 21, 19, 0.5);
 }
 
+.memory-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(22, 21, 19, 0.82) 0%,
+    rgba(22, 21, 19, 0.42) 30%,
+    rgba(22, 21, 19, 0) 62%
+  );
+  pointer-events: none;
+}
+
 .memory-slide--left .memory-frame {
   top: -8%;
   left: -2%;
@@ -324,99 +337,72 @@ a {
 .memory-copy {
   position: absolute;
   z-index: 3;
-  width: min(28%, 360px);
-  color: var(--ink);
+  width: min(30%, 360px);
+  color: #fffaf0;
+  opacity: 0.92;
+  text-shadow: 0 2px 24px rgba(22, 21, 19, 0.9),
+    0 1px 3px rgba(22, 21, 19, 0.75);
 }
 
 .memory-slide--left .memory-copy {
   top: 3.4rem;
-  left: 69%;
+  left: 4%;
 }
 
 .memory-slide--right .memory-copy {
   top: 3.4rem;
-  left: 5%;
+  right: 4%;
+  left: auto;
+  text-align: right;
 }
 
 .memory-slide--portrait-left .memory-copy {
   top: 3.4rem;
-  left: 52%;
-  width: min(34%, 420px);
+  left: clamp(1.2rem, 5vw, 5.5rem);
+  width: min(30%, 360px);
 }
 
 .memory-slide--portrait-right .memory-copy {
   top: 3.4rem;
-  left: clamp(1rem, 4vw, 4.5rem);
-  width: min(34%, 420px);
+  right: clamp(1.2rem, 5vw, 5.5rem);
+  left: auto;
+  width: min(30%, 360px);
+  text-align: right;
 }
 
 .memory-slide--wide .memory-copy {
   top: 3.4rem;
   bottom: auto;
-  left: clamp(1rem, 4vw, 4.5rem);
+  left: clamp(1.2rem, 4vw, 4.5rem);
   width: min(420px, 70%);
-  padding: 1rem 1.2rem;
-  border-left: 2px solid var(--accent);
-  background: rgba(247, 245, 241, 0.9);
-  backdrop-filter: blur(8px);
-}
-
-.memory-copy::before {
-  content: "";
-  display: block;
-  width: 34px;
-  height: 1px;
-  margin-bottom: 0.7rem;
-  background: var(--accent);
-}
-
-.memory-slide--wide .memory-copy::before {
-  display: none;
 }
 
 .memory-kicker {
   margin: 0 0 0.55rem;
-  color: var(--accent-dark);
-  font-size: 0.58rem;
-  font-weight: 700;
+  color: #ffc2a1;
+  font-size: 0.56rem;
+  font-weight: 500;
   letter-spacing: 0.17em;
   text-transform: uppercase;
+  text-shadow: 0 2px 16px rgba(22, 21, 19, 0.8);
 }
 
 .memory-title {
   margin: 0;
-  font-size: clamp(1.2rem, 2vw, 1.7rem);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.03em;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
 }
 
 .memory-note {
   max-width: 26ch;
-  margin: 0.5rem 0 0;
-  color: #776e63;
-  font-size: 0.68rem;
-  font-weight: 400;
+  margin: 0.45rem 0 0;
+  color: rgba(255, 250, 240, 0.82);
+  font-size: 0.66rem;
+  font-weight: 300;
   line-height: 1.7;
-  letter-spacing: 0.01em;
-}
-
-.memory-label {
-  position: absolute;
-  top: 1rem;
-  left: clamp(1rem, 4vw, 4.5rem);
-  z-index: 4;
-  margin: 0;
-  padding: 0.35rem 0.6rem;
-  border: 1px solid rgba(22, 21, 19, 0.12);
-  border-radius: 999px;
-  background: rgba(247, 245, 241, 0.72);
-  backdrop-filter: blur(6px);
-  color: #6f665b;
-  font-size: 0.55rem;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  letter-spacing: 0.015em;
 }
 
 .eyebrow {
@@ -2419,13 +2405,6 @@ html.dialog-open .showcase-track,
     height: 50%;
   }
 
-  .memory-label {
-    top: 0.75rem;
-    left: 0.75rem;
-    padding: 0.3rem 0.5rem;
-    font-size: 0.5rem;
-  }
-
   .memory-slide .memory-frame {
     top: 0;
     right: 0;
@@ -2436,20 +2415,18 @@ html.dialog-open .showcase-track,
   }
 
   .memory-slide .memory-copy {
-    top: 3.2rem;
-    right: 0.75rem;
+    top: 3rem;
+    right: 0.9rem;
     bottom: auto;
-    left: 0.75rem;
+    left: 0.9rem;
     width: auto;
-    padding: 0.8rem 0.9rem;
-    border-left: 2px solid var(--accent);
-    background: rgba(247, 245, 241, 0.9);
-    backdrop-filter: blur(8px);
+    padding: 0;
+    border: 0;
+    background: none;
+    backdrop-filter: none;
+    color: #fffaf0;
+    text-align: left;
     transform: none;
-  }
-
-  .memory-copy::before {
-    display: none;
   }
 
   .memory-kicker {
@@ -2458,7 +2435,7 @@ html.dialog-open .showcase-track,
   }
 
   .memory-title {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   .memory-note {
