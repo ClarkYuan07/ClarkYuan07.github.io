@@ -873,6 +873,67 @@
 })();
 
 (() => {
+  const showcase = document.querySelector(".hero-showcase");
+  const viewport = showcase?.querySelector(".showcase-viewport");
+  if (!showcase || !viewport) return;
+
+  const items = [...viewport.querySelectorAll(".showcase-item")];
+  if (!items.length) return;
+
+  let lastUpdate = 0;
+
+  const updateFocus = () => {
+    const viewportRect = viewport.getBoundingClientRect();
+    if (!viewportRect.width || !viewportRect.height) return;
+
+    const horizontal = getComputedStyle(viewport).overflowX === "auto";
+    const center = horizontal
+      ? viewportRect.left + viewportRect.width / 2
+      : viewportRect.top + viewportRect.height / 2;
+    const span = (horizontal ? viewportRect.width : viewportRect.height) * 0.62;
+
+    let nearest = null;
+    let nearestDistance = Infinity;
+
+    for (const item of items) {
+      const rect = item.getBoundingClientRect();
+      const itemCenter = horizontal
+        ? rect.left + rect.width / 2
+        : rect.top + rect.height / 2;
+      const distance = Math.abs(itemCenter - center);
+      const focus = Math.max(0, Math.min(1, 1 - distance / span));
+
+      item.style.setProperty("--scale", (1 + focus * 0.12).toFixed(3));
+
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearest = item;
+      }
+    }
+
+    for (const item of items) {
+      item.classList.toggle("is-center", item === nearest);
+    }
+  };
+
+  const loop = (time) => {
+    if (time - lastUpdate > 80) {
+      lastUpdate = time;
+      if (
+        !document.hidden &&
+        !document.querySelector("#home-view")?.hidden
+      ) {
+        updateFocus();
+      }
+    }
+
+    requestAnimationFrame(loop);
+  };
+
+  requestAnimationFrame(loop);
+})();
+
+(() => {
   const stage = document.querySelector("#memory-stage");
   if (!stage) return;
 
