@@ -8,6 +8,8 @@
     title: dialog.querySelector("#shoe-dialog-title"),
     average: dialog.querySelector("#shoe-dialog-avg"),
     tags: dialog.querySelector("#shoe-dialog-tags"),
+    intro: dialog.querySelector("#shoe-dialog-intro"),
+    desc: dialog.querySelector("#shoe-dialog-desc"),
     radar: dialog.querySelector("#shoe-radar"),
     buy: dialog.querySelector("#shoe-dialog-buy"),
     buyLabel: dialog.querySelector("#shoe-dialog-buy span"),
@@ -40,6 +42,7 @@
       title: card.querySelector(".card-title").textContent.trim(),
       kicker: card.querySelector(".kicker").textContent.trim(),
       average: card.querySelector(".avg-badge b").textContent.trim(),
+      desc: card.querySelector(".desc")?.textContent.trim() ?? "",
       image: card.querySelector(".card-media img"),
       buy: card.querySelector(".btn-buy"),
       tags: [...card.querySelectorAll(".tags li")].map((item) =>
@@ -184,6 +187,9 @@
       }),
     );
 
+    ui.desc.textContent = data.desc;
+    ui.intro.hidden = data.desc.length === 0;
+
     if (data.buy) {
       ui.buy.href = data.buy.href;
       const label = data.buy.querySelector("span");
@@ -236,9 +242,28 @@
   const cards = [...grid.querySelectorAll(".shoe-card")];
   const count = document.querySelector("#shoe-search-count");
   const emptyState = document.querySelector("#shoe-search-empty");
-  const emptyTerm = document.querySelector("#shoe-search-term");
+  const emptyTitle = document.querySelector("#shoe-search-empty-title");
   const clearButton = document.querySelector("#shoe-search-clear");
   const resetButton = document.querySelector("#shoe-search-reset");
+  const filterToggle = document.querySelector("#shoe-filter-toggle");
+  const filterPanel = document.querySelector("#shoe-filter-panel");
+  const filterCount = document.querySelector("#shoe-filter-count");
+  const filterClose = document.querySelector("#shoe-filter-close");
+  const filterReset = document.querySelector("#shoe-filter-reset");
+  const filterApply = document.querySelector("#shoe-filter-apply");
+  const filterGroups = [...filterPanel.querySelectorAll(".filter-group")];
+  const filterInputs = [
+    ...filterPanel.querySelectorAll('input[type="checkbox"]'),
+  ];
+
+  const DIMENSION_KEYS = [
+    "playstyle",
+    "weight",
+    "budget",
+    "court",
+    "brand",
+    "tech",
+  ];
 
   const normalize = (value) =>
     value.trim().toLowerCase().replace(/\s+/g, "");
@@ -250,12 +275,77 @@
     ]),
   );
 
+  const cardFilterValues = new Map(
+    cards.map((card) => [
+      card,
+      Object.fromEntries(
+        DIMENSION_KEYS.map((key) => [
+          key,
+          new Set(
+            (card.dataset[key] || "")
+              .split(",")
+              .map((value) => value.trim())
+              .filter(Boolean),
+          ),
+        ]),
+      ),
+    ]),
+  );
+
+  const getActiveFilters = () =>
+    filterGroups
+      .map((group) => ({
+        key: group.dataset.filterKey,
+        values: [
+          ...group.querySelectorAll('input[type="checkbox"]:checked'),
+        ].map((item) => item.value),
+      }))
+      .filter((group) => group.values.length > 0);
+
+  const cardMatchesFilters = (card, filters) => {
+    const values = cardFilterValues.get(card);
+    return filters.every(({ key, values: selected }) =>
+      selected.some((value) => values[key].has(value)),
+    );
+  };
+
+  const updateFilterBadge = (filters) => {
+    const selectedCount = filters.reduce(
+      (total, group) => total + group.values.length,
+      0,
+    );
+    filterCount.textContent = String(selectedCount);
+    filterCount.hidden = selectedCount === 0;
+    filterToggle.classList.toggle("has-filters", selectedCount > 0);
+    filterToggle.setAttribute(
+      "aria-label",
+      selectedCount > 0 ? `筛选，已选 ${selectedCount} 个条件` : "筛选",
+    );
+  };
+
+  const setFilterOpen = (open) => {
+    filterPanel.hidden = !open;
+    filterToggle.setAttribute("aria-expanded", String(open));
+  };
+
+  const emptyMessage = (queryText, hasFilters) => {
+    if (!queryText) return "没有找到符合筛选条件的球鞋";
+    if (hasFilters) {
+      return `没有找到「${queryText}」及符合筛选条件的球鞋`;
+    }
+    return `没有找到「${queryText}」`;
+  };
+
   const applyFilter = () => {
-    const query = normalize(input.value);
+    const rawQuery = input.value;
+    const query = normalize(rawQuery);
+    const filters = getActiveFilters();
     const visibleCards = [];
 
     for (const card of cards) {
-      const matches = !query || names.get(card).includes(query);
+      const matchesName = !query || names.get(card).includes(query);
+      const matchesFilters = cardMatchesFilters(card, filters);
+      const matches = matchesName && matchesFilters;
       card.hidden = !matches;
       if (matches) visibleCards.push(card);
     }
@@ -268,21 +358,41 @@
       visibleCards[visibleCards.length - 1].classList.add("is-last-odd");
     }
 
-    count.textContent = query
-      ? `找到 ${visibleCards.length} 双`
-      : `共 ${cards.length} 双`;
+    const hasFilters = filters.length > 0;
+    count.textContent =
+      query || hasFilters
+        ? `找到 ${visibleCards.length} 双`
+        : `共 ${cards.length} 双`;
 
     emptyState.hidden = visibleCards.length !== 0;
     if (visibleCards.length === 0) {
-      emptyTerm.textContent = input.value.trim();
+      emptyTitle.textContent = emptyMessage(rawQuery.trim(), hasFilters);
     }
 
-    clearButton.hidden = input.value.length === 0;
+    clearButton.hidden = rawQuery.length === 0;
+    updateFilterBadge(filters);
   };
 
   const clearSearch = () => {
     input.value = "";
     applyFilter();
+    input.focus();
+  };
+
+  const clearFilters = () => {
+    for (const item of filterInputs) {
+      item.checked = false;
+    }
+    applyFilter();
+  };
+
+  const resetAll = () => {
+    input.value = "";
+    for (const item of filterInputs) {
+      item.checked = false;
+    }
+    applyFilter();
+    setFilterOpen(false);
     input.focus();
   };
 
@@ -308,7 +418,35 @@
   });
 
   clearButton.addEventListener("click", clearSearch);
-  resetButton.addEventListener("click", clearSearch);
+  resetButton.addEventListener("click", resetAll);
+
+  for (const item of filterInputs) {
+    item.addEventListener("change", applyFilter);
+  }
+
+  filterToggle.addEventListener("click", () => {
+    setFilterOpen(filterPanel.hidden);
+  });
+
+  filterClose.addEventListener("click", () => {
+    setFilterOpen(false);
+    filterToggle.focus();
+  });
+
+  filterApply.addEventListener("click", () => {
+    setFilterOpen(false);
+    filterToggle.focus();
+  });
+
+  filterReset.addEventListener("click", clearFilters);
+
+  filterPanel.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setFilterOpen(false);
+      filterToggle.focus();
+    }
+  });
 
   applyFilter();
 })();
