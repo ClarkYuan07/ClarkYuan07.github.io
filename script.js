@@ -1163,12 +1163,7 @@
     show(0);
   };
 
-  const desktop = window.matchMedia("(min-width: 1101px)");
-  if (desktop.matches) build();
-
-  desktop.addEventListener("change", (event) => {
-    if (event.matches) build();
-  });
+  build();
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -1178,7 +1173,6 @@
   setInterval(() => {
     if (
       document.hidden ||
-      !desktop.matches ||
       !stage.childElementCount ||
       homeView?.hidden ||
       document.documentElement.classList.contains("dialog-open")

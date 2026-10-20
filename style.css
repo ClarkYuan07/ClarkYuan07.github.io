@@ -227,7 +227,7 @@ a {
   position: relative;
   isolation: isolate;
   width: 100%;
-  height: 350px;
+  height: 525px;
   overflow: hidden;
   background: #e9e2d6;
 }
@@ -2408,7 +2408,66 @@ html.dialog-open .showcase-track,
 
 @media (max-width: 1100px) {
   .hero-memories {
+    height: 420px;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero-memories {
+    height: 420px;
+  }
+
+  .hero-memories::after {
+    height: 60px;
+  }
+
+  .memory-label {
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.5rem;
+  }
+
+  .memory-slide .memory-frame {
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: none;
+  }
+
+  .memory-slide .memory-copy {
+    top: auto;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+    padding: 0.8rem 0.9rem;
+    border-left: 2px solid var(--accent);
+    background: rgba(247, 245, 241, 0.9);
+    backdrop-filter: blur(8px);
+    transform: none;
+  }
+
+  .memory-copy::before {
     display: none;
+  }
+
+  .memory-kicker {
+    margin-bottom: 0.35rem;
+    font-size: 0.54rem;
+  }
+
+  .memory-title {
+    font-size: 1.15rem;
+  }
+
+  .memory-note {
+    max-width: none;
+    margin-top: 0.35rem;
+    font-size: 0.65rem;
+    line-height: 1.6;
   }
 }
 
