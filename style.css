@@ -717,6 +717,40 @@ html.dialog-open .showcase-track,
   animation-play-state: paused;
 }
 
+@media (min-width: 981px) {
+  .hero-showcase {
+    overflow: visible;
+  }
+
+  .showcase-viewport {
+    overflow: visible;
+    clip-path: inset(0 -60px);
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .showcase-viewport::before,
+  .showcase-viewport::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    height: 34px;
+    pointer-events: none;
+  }
+
+  .showcase-viewport::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--ink), rgba(22, 21, 19, 0));
+  }
+
+  .showcase-viewport::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--ink), rgba(22, 21, 19, 0));
+  }
+}
+
 @keyframes showcase-scroll {
   to {
     transform: translateY(-50%);

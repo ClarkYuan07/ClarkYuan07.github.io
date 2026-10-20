@@ -903,7 +903,7 @@
       const distance = Math.abs(itemCenter - center);
       const focus = Math.max(0, Math.min(1, 1 - distance / span));
 
-      item.style.setProperty("--scale", (1 + focus * 0.12).toFixed(3));
+      item.style.setProperty("--scale", (1 + focus * 0.2).toFixed(3));
 
       if (distance < nearestDistance) {
         nearestDistance = distance;
