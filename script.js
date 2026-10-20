@@ -788,3 +788,86 @@
   window.addEventListener("hashchange", route);
   route();
 })();
+
+(() => {
+  const track = document.querySelector("#shoe-showcase-track");
+  if (!track) return;
+
+  const cards = [...document.querySelectorAll("#shoe-grid .shoe-card")];
+  if (!cards.length) return;
+
+  const createItem = (card, isClone) => {
+    const titleNode = card.querySelector(".card-title");
+    const imageNode = card.querySelector(".card-media img");
+    const kicker = card.querySelector(".kicker").textContent.trim();
+    const title = titleNode.textContent.trim();
+    const average = card.querySelector(".avg-badge b").textContent.trim();
+    const brand = kicker.split("·")[0].trim();
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "showcase-item";
+    button.setAttribute("aria-label", `${title}：查看详情`);
+    if (isClone) button.tabIndex = -1;
+
+    const thumb = document.createElement("span");
+    thumb.className = "showcase-thumb";
+
+    const image = document.createElement("img");
+    image.src = imageNode.currentSrc || imageNode.src;
+    image.alt = "";
+    if (card.querySelector(".card-media--ae2")) {
+      image.classList.add("is-bright");
+    }
+    thumb.append(image);
+
+    const copy = document.createElement("span");
+    copy.className = "showcase-copy";
+
+    const name = document.createElement("span");
+    name.className = "showcase-name";
+    name.textContent = title;
+
+    const meta = document.createElement("span");
+    meta.className = "showcase-meta";
+    meta.textContent = brand;
+
+    copy.append(name, meta);
+
+    const score = document.createElement("span");
+    score.className = "showcase-score";
+
+    const value = document.createElement("b");
+    value.textContent = average;
+
+    const label = document.createElement("small");
+    label.textContent = "平均";
+
+    score.append(value, label);
+    button.append(thumb, copy, score);
+
+    button.addEventListener("click", () => {
+      document.dispatchEvent(
+        new CustomEvent("shoe:open", {
+          detail: { cardId: titleNode.id, trigger: button },
+        }),
+      );
+    });
+
+    return button;
+  };
+
+  const createGroup = (isClone) => {
+    const group = document.createElement("div");
+    group.className = "showcase-group";
+    if (isClone) group.setAttribute("aria-hidden", "true");
+
+    for (const card of cards) {
+      group.append(createItem(card, isClone));
+    }
+
+    return group;
+  };
+
+  track.replaceChildren(createGroup(false), createGroup(true));
+})();
