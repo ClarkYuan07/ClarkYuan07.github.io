@@ -258,11 +258,25 @@
   const filterCount = document.querySelector("#shoe-filter-count");
   const filterClose = document.querySelector("#shoe-filter-close");
   const filterReset = document.querySelector("#shoe-filter-reset");
-  const filterApply = document.querySelector("#shoe-filter-apply");
-  const filterGroups = [...filterPanel.querySelectorAll(".filter-group")];
+  const filterSteps = [...filterPanel.querySelectorAll(".filter-step")];
   const filterInputs = [
     ...filterPanel.querySelectorAll('input[type="checkbox"]'),
   ];
+  const filterProgress = document.querySelector("#shoe-filter-progress");
+  const filterProgressBar = document.querySelector("#shoe-filter-progress-bar");
+  const filterProgressText = document.querySelector("#shoe-filter-progress-text");
+  const filterTitle = document.querySelector("#shoe-filter-title");
+  const filterStepLabel = document.querySelector("#shoe-filter-step-label");
+  const filterStepsWrap = document.querySelector("#shoe-filter-steps");
+  const filterActions = document.querySelector("#shoe-filter-actions");
+  const filterBack = document.querySelector("#shoe-filter-back");
+  const filterSkip = document.querySelector("#shoe-filter-skip");
+  const filterNext = document.querySelector("#shoe-filter-next");
+  const filterComplete = document.querySelector("#shoe-filter-complete");
+  const filterCompleteMeta = document.querySelector(
+    "#shoe-filter-complete-meta",
+  );
+  const filterResults = document.querySelector("#shoe-filter-results");
 
   const DIMENSION_KEYS = [
     "playstyle",
@@ -272,6 +286,10 @@
     "brand",
     "tech",
   ];
+
+  const TOTAL_STEPS = filterSteps.length;
+  const RING_LENGTH = 2 * Math.PI * 20;
+  let currentStep = 0;
 
   const normalize = (value) =>
     value.trim().toLowerCase().replace(/\s+/g, "");
@@ -301,14 +319,14 @@
   );
 
   const getActiveFilters = () =>
-    filterGroups
-      .map((group) => ({
-        key: group.dataset.filterKey,
+    filterSteps
+      .map((step) => ({
+        key: step.dataset.filterKey,
         values: [
-          ...group.querySelectorAll('input[type="checkbox"]:checked'),
+          ...step.querySelectorAll('input[type="checkbox"]:checked'),
         ].map((item) => item.value),
       }))
-      .filter((group) => group.values.length > 0);
+      .filter((step) => step.values.length > 0);
 
   const cardMatchesFilters = (card, filters) => {
     const values = cardFilterValues.get(card);
@@ -381,17 +399,106 @@
     updateFilterBadge(filters);
   };
 
+  const setProgress = (completed) => {
+    const ratio = TOTAL_STEPS === 0 ? 0 : completed / TOTAL_STEPS;
+    const percent = Math.round(ratio * 100);
+    filterProgressBar.style.strokeDashoffset = String(RING_LENGTH * (1 - ratio));
+    filterProgressText.textContent = `${percent}%`;
+    filterProgress.setAttribute("aria-valuenow", String(percent));
+  };
+
+  const renderStep = () => {
+    filterSteps.forEach((step, index) => {
+      step.hidden = index !== currentStep;
+    });
+
+    const step = filterSteps[currentStep];
+    filterTitle.textContent = "定制搜索中";
+    filterStepLabel.textContent = `第 ${currentStep + 1} / ${TOTAL_STEPS} 步 · ${step.dataset.label}`;
+    filterBack.disabled = currentStep === 0;
+    filterNext.textContent =
+      currentStep === TOTAL_STEPS - 1 ? "完成" : "下一步";
+    filterStepsWrap.hidden = false;
+    filterActions.hidden = false;
+    filterComplete.hidden = true;
+    setProgress(currentStep);
+  };
+
+  const openWizard = () => {
+    currentStep = 0;
+    renderStep();
+    setFilterOpen(true);
+  };
+
+  const completeWizard = () => {
+    applyFilter();
+
+    const filters = getActiveFilters();
+    const selectedCount = filters.reduce(
+      (total, step) => total + step.values.length,
+      0,
+    );
+    const visibleCount = cards.filter((card) => !card.hidden).length;
+
+    filterStepsWrap.hidden = true;
+    filterActions.hidden = true;
+    filterComplete.hidden = false;
+    filterTitle.textContent = "定制完成";
+    filterStepLabel.textContent = "全部维度已完成";
+    filterCompleteMeta.textContent = `已选 ${selectedCount} 个条件 · 找到 ${visibleCount} 双`;
+    setProgress(TOTAL_STEPS);
+    requestAnimationFrame(() => filterResults.focus());
+  };
+
+  const advanceWizard = (skipCurrent) => {
+    const step = filterSteps[currentStep];
+
+    if (skipCurrent) {
+      for (const item of step.querySelectorAll(
+        'input[type="checkbox"]:checked',
+      )) {
+        item.checked = false;
+      }
+    }
+
+    applyFilter();
+
+    if (currentStep >= TOTAL_STEPS - 1) {
+      completeWizard();
+      return;
+    }
+
+    currentStep += 1;
+    renderStep();
+    requestAnimationFrame(() => {
+      filterSteps[currentStep].querySelector("input")?.focus();
+    });
+  };
+
+  const goBackStep = () => {
+    if (currentStep === 0) return;
+
+    currentStep -= 1;
+    renderStep();
+    requestAnimationFrame(() => {
+      filterSteps[currentStep].querySelector("input")?.focus();
+    });
+  };
+
+  const resetFilters = () => {
+    for (const item of filterInputs) {
+      item.checked = false;
+    }
+
+    applyFilter();
+    currentStep = 0;
+    renderStep();
+  };
+
   const clearSearch = () => {
     input.value = "";
     applyFilter();
     input.focus();
-  };
-
-  const clearFilters = () => {
-    for (const item of filterInputs) {
-      item.checked = false;
-    }
-    applyFilter();
   };
 
   const resetAll = () => {
@@ -433,7 +540,11 @@
   }
 
   filterToggle.addEventListener("click", () => {
-    setFilterOpen(filterPanel.hidden);
+    if (filterPanel.hidden) {
+      openWizard();
+    } else {
+      setFilterOpen(false);
+    }
   });
 
   filterClose.addEventListener("click", () => {
@@ -441,12 +552,15 @@
     filterToggle.focus();
   });
 
-  filterApply.addEventListener("click", () => {
+  filterBack.addEventListener("click", goBackStep);
+  filterSkip.addEventListener("click", () => advanceWizard(true));
+  filterNext.addEventListener("click", () => advanceWizard(false));
+  filterReset.addEventListener("click", resetFilters);
+
+  filterResults.addEventListener("click", () => {
     setFilterOpen(false);
     filterToggle.focus();
   });
-
-  filterReset.addEventListener("click", clearFilters);
 
   filterPanel.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {

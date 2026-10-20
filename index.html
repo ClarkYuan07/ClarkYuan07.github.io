@@ -100,9 +100,19 @@
         <p class="search-count" id="shoe-search-count" role="status" aria-live="polite" aria-atomic="true">共 7 双</p>
       </div>
 
-      <div class="filter-panel" id="shoe-filter-panel" hidden>
-        <div class="filter-panel-head">
-          <p class="filter-title">筛选球鞋</p>
+      <div class="filter-panel" id="shoe-filter-panel" role="region" aria-labelledby="shoe-filter-title" hidden>
+        <div class="filter-wizard-head">
+          <div class="filter-progress" id="shoe-filter-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="筛选进度">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <circle class="filter-progress-bg" cx="24" cy="24" r="20"></circle>
+              <circle class="filter-progress-bar" id="shoe-filter-progress-bar" cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span class="filter-progress-text" id="shoe-filter-progress-text">0%</span>
+          </div>
+          <div class="filter-wizard-copy">
+            <p class="filter-title" id="shoe-filter-title">定制搜索中</p>
+            <p class="filter-step-label" id="shoe-filter-step-label">第 1 / 6 步</p>
+          </div>
           <button class="filter-close" type="button" id="shoe-filter-close" aria-label="收起筛选">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -110,9 +120,10 @@
           </button>
         </div>
 
-        <div class="filter-groups">
-          <fieldset class="filter-group" data-filter-key="playstyle">
-            <legend>打法</legend>
+        <div class="filter-steps" id="shoe-filter-steps">
+          <fieldset class="filter-step" data-filter-key="playstyle" data-label="打法">
+            <legend>你的打法是？</legend>
+            <p class="filter-step-hint">可多选；没有要求就跳过。</p>
             <div class="filter-options">
               <label class="filter-chip"><input type="checkbox" name="playstyle" value="冲击"><span>冲击</span></label>
               <label class="filter-chip"><input type="checkbox" name="playstyle" value="投射"><span>投射</span></label>
@@ -121,25 +132,9 @@
             </div>
           </fieldset>
 
-          <fieldset class="filter-group" data-filter-key="weight">
-            <legend>体重</legend>
-            <div class="filter-options">
-              <label class="filter-chip"><input type="checkbox" name="weight" value="大体重"><span>大体重</span></label>
-              <label class="filter-chip"><input type="checkbox" name="weight" value="中体重"><span>中体重</span></label>
-              <label class="filter-chip"><input type="checkbox" name="weight" value="小体重"><span>小体重</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="filter-group" data-filter-key="budget">
-            <legend>预算</legend>
-            <div class="filter-options">
-              <label class="filter-chip"><input type="checkbox" name="budget" value="低预算"><span>低预算</span></label>
-              <label class="filter-chip"><input type="checkbox" name="budget" value="中预算"><span>中预算</span></label>
-            </div>
-          </fieldset>
-
-          <fieldset class="filter-group" data-filter-key="court">
-            <legend>场地</legend>
+          <fieldset class="filter-step" data-filter-key="court" data-label="场地" hidden>
+            <legend>常在什么场地打球？</legend>
+            <p class="filter-step-hint">可多选；没有要求就跳过。</p>
             <div class="filter-options">
               <label class="filter-chip"><input type="checkbox" name="court" value="水泥地"><span>水泥地</span></label>
               <label class="filter-chip"><input type="checkbox" name="court" value="塑胶地"><span>塑胶地</span></label>
@@ -147,8 +142,28 @@
             </div>
           </fieldset>
 
-          <fieldset class="filter-group" data-filter-key="brand">
-            <legend>品牌</legend>
+          <fieldset class="filter-step" data-filter-key="weight" data-label="体重" hidden>
+            <legend>你的体重大致是？</legend>
+            <p class="filter-step-hint">可多选；没有要求就跳过。</p>
+            <div class="filter-options">
+              <label class="filter-chip"><input type="checkbox" name="weight" value="大体重"><span>大体重</span></label>
+              <label class="filter-chip"><input type="checkbox" name="weight" value="中体重"><span>中体重</span></label>
+              <label class="filter-chip"><input type="checkbox" name="weight" value="小体重"><span>小体重</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="filter-step" data-filter-key="budget" data-label="预算" hidden>
+            <legend>预算大概多少？</legend>
+            <p class="filter-step-hint">可多选；没有要求就跳过。</p>
+            <div class="filter-options">
+              <label class="filter-chip"><input type="checkbox" name="budget" value="低预算"><span>低预算</span></label>
+              <label class="filter-chip"><input type="checkbox" name="budget" value="中预算"><span>中预算</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="filter-step" data-filter-key="brand" data-label="品牌" hidden>
+            <legend>有偏好的品牌吗？</legend>
+            <p class="filter-step-hint">可多选；没有要求就跳过。</p>
             <div class="filter-options">
               <label class="filter-chip"><input type="checkbox" name="brand" value="Jordan"><span>Jordan</span></label>
               <label class="filter-chip"><input type="checkbox" name="brand" value="Nike"><span>Nike</span></label>
@@ -157,8 +172,9 @@
             </div>
           </fieldset>
 
-          <fieldset class="filter-group" data-filter-key="tech">
-            <legend>科技</legend>
+          <fieldset class="filter-step" data-filter-key="tech" data-label="科技" hidden>
+            <legend>在意哪些科技？</legend>
+            <p class="filter-step-hint">可多选；没有要求就跳过。</p>
             <div class="filter-options">
               <label class="filter-chip"><input type="checkbox" name="tech" value="Zoom"><span>Zoom</span></label>
               <label class="filter-chip"><input type="checkbox" name="tech" value="Formula 23"><span>Formula 23</span></label>
@@ -170,12 +186,22 @@
           </fieldset>
         </div>
 
-        <div class="filter-foot">
-          <p class="filter-note">同一维度可多选；不同维度需同时满足。</p>
-          <div class="filter-actions">
-            <button class="btn btn-ghost" type="button" id="shoe-filter-reset">重置筛选</button>
-            <button class="btn btn-primary" type="button" id="shoe-filter-apply">完成</button>
+        <div class="filter-wizard-foot" id="shoe-filter-actions">
+          <div class="filter-foot-left">
+            <button class="filter-text-btn" type="button" id="shoe-filter-back" disabled>← 上一步</button>
+            <button class="filter-text-btn" type="button" id="shoe-filter-reset">重置筛选</button>
           </div>
+          <div class="filter-foot-right">
+            <button class="btn btn-ghost" type="button" id="shoe-filter-skip">跳过</button>
+            <button class="btn btn-primary" type="button" id="shoe-filter-next">下一步</button>
+          </div>
+        </div>
+
+        <div class="filter-complete" id="shoe-filter-complete" hidden>
+          <span class="filter-complete-icon" aria-hidden="true">✓</span>
+          <p class="filter-complete-title">筛选完成</p>
+          <p class="filter-complete-meta" id="shoe-filter-complete-meta"></p>
+          <button class="btn btn-primary" type="button" id="shoe-filter-results">查看结果</button>
         </div>
       </div>
 
