@@ -41,6 +41,7 @@ html.dialog-open {
 
 body {
   margin: 0;
+  overflow-x: clip;
   font-family: var(--font-sans);
   color: var(--ink);
   background-color: var(--bg);
@@ -205,11 +206,90 @@ a {
 /* ---------- 首屏 ---------- */
 
 .hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1.18fr) minmax(290px, 0.72fr);
   align-items: center;
   gap: clamp(2rem, 5vw, 4.5rem);
   padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(2.5rem, 5vw, 4rem);
+}
+
+.hero-copy,
+.hero-showcase {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 经典瞬间背景 ---------- */
+
+.hero-memories {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 0;
+  width: 100vw;
+  height: 140px;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateX(-50%);
+  opacity: 0.2;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.hero-memories::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  z-index: 2;
+  height: 60px;
+  background: linear-gradient(
+    to bottom,
+    rgba(247, 245, 241, 0),
+    var(--bg)
+  );
+}
+
+.memory-track {
+  display: flex;
+  width: max-content;
+  animation: memory-drift 55s linear infinite;
+  will-change: transform;
+}
+
+.memory-group {
+  display: flex;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.memory-slide {
+  flex: none;
+  width: 300px;
+  height: 140px;
+  border-radius: 16px;
+  background-position: center;
+  background-size: cover;
+  filter: grayscale(1) sepia(0.3) contrast(1.05) brightness(0.94);
+}
+
+@keyframes memory-drift {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 .eyebrow {
@@ -510,6 +590,11 @@ a {
 .hero-showcase:focus-within .showcase-track,
 html.dialog-open .showcase-track,
 #home-view[hidden] .showcase-track {
+  animation-play-state: paused;
+}
+
+html.dialog-open .memory-track,
+#home-view[hidden] .memory-track {
   animation-play-state: paused;
 }
 
@@ -2191,15 +2276,33 @@ html.dialog-open .showcase-track,
   .showcase-viewport {
     overflow-y: auto;
   }
+
+  .memory-track {
+    animation: none;
+  }
+
+  .memory-group[aria-hidden="true"] {
+    display: none;
+  }
 }
 
 /* ---------- 响应式 ---------- */
+
+@media (max-width: 1100px) {
+  .hero-memories {
+    display: none;
+  }
+}
 
 @media (max-width: 980px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: 2.5rem;
+  }
+
+  .hero-memories {
+    display: none;
   }
 
   .hero-showcase {

@@ -871,3 +871,42 @@
 
   track.replaceChildren(createGroup(false), createGroup(true));
 })();
+
+(() => {
+  const track = document.querySelector("#memory-track");
+  if (!track) return;
+
+  const MEMORIES = [
+    "images/memories/jordan-1998.jpg",
+    "images/memories/kobe-2006.jpg",
+    "images/memories/bird-1985.jpg",
+    "images/memories/lebron-2016.jpg",
+    "images/memories/kawhi-2019.jpg",
+  ];
+
+  const createGroup = (isClone) => {
+    const group = document.createElement("div");
+    group.className = "memory-group";
+    if (isClone) group.setAttribute("aria-hidden", "true");
+
+    for (const src of MEMORIES) {
+      const slide = document.createElement("div");
+      slide.className = "memory-slide";
+      slide.style.backgroundImage = `url("${src}")`;
+      group.append(slide);
+    }
+
+    return group;
+  };
+
+  const build = () => {
+    if (track.childElementCount) return;
+    track.replaceChildren(createGroup(false), createGroup(true));
+  };
+
+  const desktop = window.matchMedia("(min-width: 1101px)");
+  if (desktop.matches) build();
+  desktop.addEventListener("change", (event) => {
+    if (event.matches) build();
+  });
+})();
