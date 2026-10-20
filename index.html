@@ -681,6 +681,19 @@
     </div>
   </dialog>
 
-  <script src="script.20261020-11.js" defer></script>
+  <script>
+    fetch("script.20261020-11.js")
+      .then((response) => response.text())
+      .then((source) => {
+        const script = document.createElement("script");
+        script.textContent = source;
+        document.body.append(script);
+      })
+      .catch(() => {
+        const script = document.createElement("script");
+        script.src = "script.20261020-11.js";
+        document.body.append(script);
+      });
+  </script>
 </body>
 </html>
