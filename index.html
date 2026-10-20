@@ -71,7 +71,26 @@
         <p>7 双球鞋 · 10 个维度 · 满分 10 分</p>
       </div>
 
-      <div class="card-grid">
+      <div class="catalog-tools">
+        <div class="search" role="search">
+          <label class="sr-only" for="shoe-search">按鞋名搜索</label>
+          <div class="search-field">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.6"/>
+              <path d="m13 13 3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+            <input class="search-input" id="shoe-search" type="search" placeholder="搜索鞋名，如 AJ37、Zion 1、利刃6" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search" aria-controls="shoe-grid">
+            <button class="search-clear" type="button" id="shoe-search-clear" aria-label="清空搜索" hidden>
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="search-count" id="shoe-search-count" role="status" aria-live="polite" aria-atomic="true">共 7 双</p>
+      </div>
+
+      <div class="card-grid" id="shoe-grid">
 
         <article class="shoe-card" aria-labelledby="shoe-aj37">
           <div class="card-media">
@@ -402,6 +421,12 @@
         </article>
 
       </div>
+
+      <div class="catalog-empty" id="shoe-search-empty" hidden>
+        <p class="empty-title">没有找到「<span id="shoe-search-term"></span>」</p>
+        <p class="empty-hint">试试 AJ37、AE2、Zion、利刃6 或闪击10。</p>
+        <button class="btn btn-ghost" type="button" id="shoe-search-reset">清空搜索</button>
+      </div>
     </section>
   </main>
 
@@ -420,5 +445,46 @@
       </div>
     </div>
   </footer>
+
+  <dialog class="shoe-dialog" id="shoe-dialog" aria-labelledby="shoe-dialog-title">
+    <button class="dialog-close" type="button" aria-label="关闭详情">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="dialog-panel">
+      <div class="dialog-media">
+        <img id="shoe-dialog-image" alt="" decoding="async">
+      </div>
+
+      <div class="dialog-body">
+        <p class="kicker" id="shoe-dialog-kicker"></p>
+        <div class="dialog-heading">
+          <h2 class="dialog-title" id="shoe-dialog-title"></h2>
+          <div class="dialog-score">
+            <b id="shoe-dialog-avg"></b>
+            <small>平均分</small>
+          </div>
+        </div>
+
+        <ul class="tags dialog-tags" id="shoe-dialog-tags" aria-label="突出项"></ul>
+
+        <figure class="radar-figure">
+          <svg class="radar" id="shoe-radar" viewBox="0 0 400 400" role="img" aria-labelledby="radar-title radar-desc"></svg>
+          <figcaption class="radar-note">满分 10 分 · 越靠外表现越好</figcaption>
+        </figure>
+
+        <a class="btn btn-buy dialog-buy" id="shoe-dialog-buy" href="#" target="_blank" rel="noopener noreferrer">
+          <span>去淘宝搜索</span>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M6 3h7v7M13 3 4.5 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
