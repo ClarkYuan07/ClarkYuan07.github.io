@@ -604,8 +604,8 @@ a {
 .showcase-group {
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
-  padding-bottom: 0.55rem;
+  gap: 1rem;
+  padding-bottom: 1rem;
 }
 
 .showcase-item {
@@ -2555,7 +2555,7 @@ html.dialog-open .showcase-track,
 
   .showcase-group {
     flex-direction: row;
-    gap: 0.65rem;
+    gap: 1.75rem;
     padding-bottom: 0;
   }
 
