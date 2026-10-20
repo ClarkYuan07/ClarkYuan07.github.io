@@ -221,33 +221,15 @@ a {
   z-index: 1;
 }
 
-/* ---------- 经典瞬间背景 ---------- */
+/* ---------- 经典瞬间 / Basketball Memories ---------- */
 
 .hero-memories {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  z-index: 0;
-  width: 100vw;
-  height: 140px;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 280px;
   overflow: hidden;
-  pointer-events: none;
-  transform: translateX(-50%);
-  opacity: 0.2;
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 6%,
-    #000 94%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0,
-    #000 6%,
-    #000 94%,
-    transparent 100%
-  );
+  background: #e9e2d6;
 }
 
 .hero-memories::after {
@@ -255,41 +237,184 @@ a {
   position: absolute;
   inset: auto 0 0;
   z-index: 2;
-  height: 60px;
+  height: 90px;
   background: linear-gradient(
     to bottom,
     rgba(247, 245, 241, 0),
     var(--bg)
   );
+  pointer-events: none;
 }
 
-.memory-track {
-  display: flex;
-  width: max-content;
-  animation: memory-drift 55s linear infinite;
-  will-change: transform;
-}
-
-.memory-group {
-  display: flex;
-  gap: 12px;
-  padding-right: 12px;
+.memory-stage {
+  position: absolute;
+  inset: 0;
 }
 
 .memory-slide {
-  flex: none;
-  width: 300px;
-  height: 140px;
-  border-radius: 16px;
-  background-position: center;
-  background-size: cover;
-  filter: grayscale(1) sepia(0.3) contrast(1.05) brightness(0.94);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.015);
+  transition: opacity 1.05s ease, transform 1.4s ease;
 }
 
-@keyframes memory-drift {
-  to {
-    transform: translateX(-50%);
-  }
+.memory-slide.is-active {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.memory-frame {
+  position: absolute;
+  overflow: hidden;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.68;
+  filter: grayscale(0.7) sepia(0.12) contrast(0.98) brightness(1.02);
+  box-shadow: 0 30px 60px -50px rgba(22, 21, 19, 0.5);
+}
+
+.memory-slide--left .memory-frame {
+  top: -8%;
+  left: -2%;
+  width: 64%;
+  height: 116%;
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+}
+
+.memory-slide--right .memory-frame {
+  top: -8%;
+  right: -2%;
+  width: 64%;
+  height: 116%;
+  clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.memory-slide--wide .memory-frame {
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 120%;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+.memory-slide--portrait-left .memory-frame {
+  top: 0;
+  left: clamp(1rem, 4vw, 4.5rem);
+  width: clamp(260px, 34%, 440px);
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 94%);
+}
+
+.memory-slide--portrait-right .memory-frame {
+  top: 0;
+  right: clamp(1rem, 4vw, 4.5rem);
+  width: clamp(260px, 34%, 440px);
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
+}
+
+.memory-copy {
+  position: absolute;
+  z-index: 3;
+  width: min(28%, 360px);
+  color: var(--ink);
+}
+
+.memory-slide--left .memory-copy {
+  top: 50%;
+  left: 69%;
+  transform: translateY(-50%);
+}
+
+.memory-slide--right .memory-copy {
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+}
+
+.memory-slide--portrait-left .memory-copy {
+  top: 50%;
+  left: 52%;
+  width: min(34%, 420px);
+  transform: translateY(-50%);
+}
+
+.memory-slide--portrait-right .memory-copy {
+  top: 50%;
+  left: clamp(1rem, 4vw, 4.5rem);
+  width: min(34%, 420px);
+  transform: translateY(-50%);
+}
+
+.memory-slide--wide .memory-copy {
+  bottom: 1.2rem;
+  left: clamp(1rem, 4vw, 4.5rem);
+  width: min(420px, 70%);
+  padding: 1rem 1.2rem;
+  border-left: 2px solid var(--accent);
+  background: rgba(247, 245, 241, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.memory-copy::before {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin-bottom: 0.7rem;
+  background: var(--accent);
+}
+
+.memory-slide--wide .memory-copy::before {
+  display: none;
+}
+
+.memory-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--accent-dark);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.memory-title {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.memory-note {
+  max-width: 26ch;
+  margin: 0.5rem 0 0;
+  color: #776e63;
+  font-size: 0.68rem;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.memory-label {
+  position: absolute;
+  top: 1rem;
+  left: clamp(1rem, 4vw, 4.5rem);
+  z-index: 4;
+  margin: 0;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid rgba(22, 21, 19, 0.12);
+  border-radius: 999px;
+  background: rgba(247, 245, 241, 0.72);
+  backdrop-filter: blur(6px);
+  color: #6f665b;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .eyebrow {
@@ -590,11 +715,6 @@ a {
 .hero-showcase:focus-within .showcase-track,
 html.dialog-open .showcase-track,
 #home-view[hidden] .showcase-track {
-  animation-play-state: paused;
-}
-
-html.dialog-open .memory-track,
-#home-view[hidden] .memory-track {
   animation-play-state: paused;
 }
 
@@ -2276,17 +2396,15 @@ html.dialog-open .memory-track,
   .showcase-viewport {
     overflow-y: auto;
   }
-
-  .memory-track {
-    animation: none;
-  }
-
-  .memory-group[aria-hidden="true"] {
-    display: none;
-  }
 }
 
 /* ---------- 响应式 ---------- */
+
+@media (min-width: 1101px) {
+  .hero {
+    padding-top: clamp(2rem, 3vw, 3rem);
+  }
+}
 
 @media (max-width: 1100px) {
   .hero-memories {
@@ -2299,10 +2417,6 @@ html.dialog-open .memory-track,
     grid-template-columns: minmax(0, 1fr);
     align-items: start;
     gap: 2.5rem;
-  }
-
-  .hero-memories {
-    display: none;
   }
 
   .hero-showcase {

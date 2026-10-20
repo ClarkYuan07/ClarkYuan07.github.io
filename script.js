@@ -873,40 +873,169 @@
 })();
 
 (() => {
-  const track = document.querySelector("#memory-track");
-  if (!track) return;
+  const stage = document.querySelector("#memory-stage");
+  if (!stage) return;
 
   const MEMORIES = [
-    "images/memories/jordan-1998.jpg",
-    "images/memories/kobe-2006.jpg",
-    "images/memories/bird-1985.jpg",
-    "images/memories/lebron-2016.jpg",
-    "images/memories/kawhi-2019.jpg",
+    {
+      src: "images/memories/jordan-1998.jpg",
+      kicker: "1998 · The Last Shot",
+      title: "Michael Jordan",
+      note: "总决赛第六场，最后一投。",
+      layout: "wide",
+      position: "center 30%",
+    },
+    {
+      src: "images/memories/kobe-2006.jpg",
+      kicker: "2006 · 81 Points",
+      title: "Kobe Bryant",
+      note: "对猛龙砍下 81 分，个人得分的极致之夜。",
+      layout: "left",
+      position: "center 38%",
+    },
+    {
+      src: "images/memories/bird-1985.jpg",
+      kicker: "1985 · Lakers vs Celtics",
+      title: "Larry Bird",
+      note: "湖凯宿敌相遇，Bird 与 Kareem 同处一个回合。",
+      layout: "right",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/lebron-2016.jpg",
+      kicker: "2016 · The Block",
+      title: "LeBron James",
+      note: "总决赛抢七，追身封盖。",
+      layout: "left",
+      position: "center 35%",
+    },
+    {
+      src: "images/memories/kawhi-2019.jpg",
+      kicker: "2019 · The Buzzer Beater",
+      title: "Kawhi Leonard",
+      note: "抢七底角压哨，球在篮筐上弹了四下。",
+      layout: "wide",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/hongkong-court.jpg",
+      kicker: "香港 · 彩虹邨",
+      title: "城市里的球场",
+      note: "楼宇之间的球场，是社区日常的一部分。",
+      layout: "portrait-right",
+      position: "center 58%",
+    },
+    {
+      src: "images/memories/night-court.jpg",
+      kicker: "夜场 · 灯光亮着",
+      title: "再打一局",
+      note: "球馆熄灯之前，总还有人舍不得走。",
+      layout: "portrait-left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/community-court.jpg",
+      kicker: "社区 · 看台边",
+      title: "一场普通的比赛",
+      note: "看台离球员只有一步，篮球把人们聚在一起。",
+      layout: "portrait-right",
+      position: "center 38%",
+    },
+    {
+      src: "images/memories/street-jump.jpg",
+      kicker: "街头 · 一次起跳",
+      title: "热爱不分场地",
+      note: "一个普通下午，一次全力以赴的起跳。",
+      layout: "portrait-left",
+      position: "center 42%",
+    },
+    {
+      src: "images/memories/abu-dhabi-dunk.jpg",
+      kicker: "阿布扎比 · 表演赛",
+      title: "篮球在世界流动",
+      note: "不同城市的灯光下，篮球继续把人们连在一起。",
+      layout: "wide",
+      position: "center 45%",
+    },
   ];
 
-  const createGroup = (isClone) => {
-    const group = document.createElement("div");
-    group.className = "memory-group";
-    if (isClone) group.setAttribute("aria-hidden", "true");
-
-    for (const src of MEMORIES) {
-      const slide = document.createElement("div");
-      slide.className = "memory-slide";
-      slide.style.backgroundImage = `url("${src}")`;
-      group.append(slide);
+  const ORDER = [];
+  for (let cycle = 0; cycle < 2; cycle += 1) {
+    for (let index = 0; index < MEMORIES.length; index += 1) {
+      ORDER.push(index);
     }
+  }
+  ORDER.splice(8, 0, 0);
+  ORDER.splice(17, 0, 1);
 
-    return group;
+  const createSlide = (memory, index) => {
+    const slide = document.createElement("div");
+    slide.className = `memory-slide memory-slide--${memory.layout}`;
+    slide.dataset.index = String(index);
+
+    const frame = document.createElement("div");
+    frame.className = "memory-frame";
+    frame.style.backgroundImage = `url("${memory.src}")`;
+    frame.style.backgroundPosition = memory.position;
+
+    const copy = document.createElement("div");
+    copy.className = "memory-copy";
+
+    const kicker = document.createElement("p");
+    kicker.className = "memory-kicker";
+    kicker.textContent = memory.kicker;
+
+    const title = document.createElement("p");
+    title.className = "memory-title";
+    title.textContent = memory.title;
+
+    const note = document.createElement("p");
+    note.className = "memory-note";
+    note.textContent = memory.note;
+
+    copy.append(kicker, title, note);
+    slide.append(frame, copy);
+    return slide;
+  };
+
+  const slides = ORDER.map((memoryIndex, slideIndex) =>
+    createSlide(MEMORIES[memoryIndex], slideIndex),
+  );
+
+  const show = (index) => {
+    slides.forEach((slide, slideIndex) => {
+      slide.classList.toggle("is-active", slideIndex === index);
+    });
   };
 
   const build = () => {
-    if (track.childElementCount) return;
-    track.replaceChildren(createGroup(false), createGroup(true));
+    if (stage.childElementCount) return;
+    stage.append(...slides);
+    show(0);
   };
 
   const desktop = window.matchMedia("(min-width: 1101px)");
   if (desktop.matches) build();
+
   desktop.addEventListener("change", (event) => {
     if (event.matches) build();
   });
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const homeView = document.querySelector("#home-view");
+  let index = 0;
+
+  setInterval(() => {
+    if (
+      document.hidden ||
+      homeView?.hidden ||
+      document.documentElement.classList.contains("dialog-open")
+    ) {
+      return;
+    }
+
+    index = (index + 1) % slides.length;
+    show(index);
+  }, 8000);
 })();
