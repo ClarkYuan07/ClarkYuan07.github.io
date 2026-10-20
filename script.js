@@ -881,7 +881,7 @@
       src: "images/memories/jordan-1998.jpg",
       kicker: "1998 · The Last Shot",
       title: "Michael Jordan",
-      note: "总决赛第六场，最后一投。",
+      note: "所有压力都落在这最后一投里；时间停了一下，历史发生。",
       layout: "wide",
       position: "center 30%",
     },
@@ -889,7 +889,7 @@
       src: "images/memories/kobe-2006.jpg",
       kicker: "2006 · 81 Points",
       title: "Kobe Bryant",
-      note: "对猛龙砍下 81 分，个人得分的极致之夜。",
+      note: "对猛龙砍下 81 分；极致的专注，是把一件事做到没有退路。",
       layout: "left",
       position: "center 38%",
     },
@@ -897,7 +897,7 @@
       src: "images/memories/bird-1985.jpg",
       kicker: "1985 · Lakers vs Celtics",
       title: "Larry Bird",
-      note: "湖凯宿敌相遇，Bird 与 Kareem 同处一个回合。",
+      note: "湖凯宿敌同处一个回合；伟大的对手，也会成就彼此。",
       layout: "right",
       position: "center 45%",
     },
@@ -905,7 +905,7 @@
       src: "images/memories/lebron-2016.jpg",
       kicker: "2016 · The Block",
       title: "LeBron James",
-      note: "总决赛抢七，追身封盖。",
+      note: "总决赛抢七，追身封盖；决定胜负的，有时是回防的那一步。",
       layout: "left",
       position: "center 35%",
     },
@@ -913,7 +913,7 @@
       src: "images/memories/kawhi-2019.jpg",
       kicker: "2019 · The Buzzer Beater",
       title: "Kawhi Leonard",
-      note: "抢七底角压哨，球在篮筐上弹了四下。",
+      note: "抢七底角压哨，球在篮筐上弹了四下；等待也是一种意志。",
       layout: "wide",
       position: "center 45%",
     },
@@ -921,7 +921,7 @@
       src: "images/memories/hongkong-court.jpg",
       kicker: "香港 · 彩虹邨",
       title: "城市里的球场",
-      note: "楼宇之间的球场，是社区日常的一部分。",
+      note: "楼宇之间留着一块球场；城市再密，也容得下日常的热爱。",
       layout: "portrait-right",
       position: "center 58%",
     },
@@ -929,7 +929,7 @@
       src: "images/memories/night-court.jpg",
       kicker: "夜场 · 灯光亮着",
       title: "再打一局",
-      note: "球馆熄灯之前，总还有人舍不得走。",
+      note: "球馆熄灯之前，总还有人舍不得走；灯亮着，就还能再来。",
       layout: "portrait-left",
       position: "center 45%",
     },
@@ -937,7 +937,7 @@
       src: "images/memories/community-court.jpg",
       kicker: "社区 · 看台边",
       title: "一场普通的比赛",
-      note: "看台离球员只有一步，篮球把人们聚在一起。",
+      note: "看台离球员只有一步；一场普通比赛，也是一次社区聚会。",
       layout: "portrait-right",
       position: "center 38%",
     },
@@ -945,7 +945,7 @@
       src: "images/memories/street-jump.jpg",
       kicker: "街头 · 一次起跳",
       title: "热爱不分场地",
-      note: "一个普通下午，一次全力以赴的起跳。",
+      note: "一个普通下午，一次全力以赴的起跳；快乐有时很简单。",
       layout: "portrait-left",
       position: "center 42%",
     },
@@ -957,16 +957,151 @@
       layout: "wide",
       position: "center 45%",
     },
+    {
+      src: "images/memories/practice-solitude.jpg",
+      kicker: "独处 · 球馆熄灯前",
+      title: "一个人的练习",
+      note: "没有观众，也要把每个动作做完；热爱先对自己成立。",
+      layout: "portrait-left",
+      position: "center 40%",
+    },
+    {
+      src: "images/memories/dusk-hoop.jpg",
+      kicker: "黄昏 · 篮筐剪影",
+      title: "还不想走",
+      note: "天色暗下来，总有人想再投最后一个；舍不得的是那口气。",
+      layout: "portrait-right",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/empty-court.jpg",
+      kicker: "空场 · 午后",
+      title: "球场在等",
+      note: "没有人来的下午，篮板也替谁守着位置；球场从不催人。",
+      layout: "portrait-left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/first-ball.jpg",
+      kicker: "少年 · 第一颗球",
+      title: "抱紧一点",
+      note: "他抱着的也许不是球，是一个很远的梦；梦想先从手里开始。",
+      layout: "portrait-right",
+      position: "center 40%",
+    },
+    {
+      src: "images/memories/street-crowd.jpg",
+      kicker: "露天球场 · 社区",
+      title: "一条街的观众",
+      note: "场边站满了人，篮球把一条街聚在一起；比赛是大家的。",
+      layout: "portrait-left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/respect.jpg",
+      kicker: "球场 · 对手之间",
+      title: "比赛之外",
+      note: "终场之后，还有握手和彼此看见；竞争不必带走尊重。",
+      layout: "portrait-right",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/look-up.jpg",
+      kicker: "仰望 · 蓝天",
+      title: "继续的理由",
+      note: "有时候，抬头看一眼篮筐，就够了；人需要一点向上的东西。",
+      layout: "portrait-left",
+      position: "center 40%",
+    },
+    {
+      src: "images/memories/after-school.jpg",
+      kicker: "放学后 · 野球场",
+      title: "没有裁判的比赛",
+      note: "规则是临时的，快乐不是；少年们在场上自己长大。",
+      layout: "left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/old-hoop.jpg",
+      kicker: "旧篮筐 · 时间",
+      title: "锈迹与裂缝",
+      note: "它老了一点，但还接得住下一次出手；坚持不总是响亮。",
+      layout: "portrait-right",
+      position: "center 50%",
+    },
+    {
+      src: "images/memories/last-light.jpg",
+      kicker: "日落 · 最后一投",
+      title: "再投一个",
+      note: "天色将暗，热爱还没有收工；有些告别要拖到最后一球。",
+      layout: "wide",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/accra-street.jpg",
+      kicker: "阿克拉 · 街头联赛",
+      title: "街道就是球场",
+      note: "没有看台，整条街的人都是观众；篮球把社区围成一个圈。",
+      layout: "portrait-left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/morning-court.jpg",
+      kicker: "清晨 · 空场",
+      title: "第一缕光",
+      note: "篮板先醒来，等一个早到的人；自律常常发生在没人看见时。",
+      layout: "portrait-right",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/her-ball.jpg",
+      kicker: "她与球 · 安静",
+      title: "一个人的陪伴",
+      note: "篮球不总是喧闹，也可以陪人坐一会儿；热爱有安静的样子。",
+      layout: "left",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/wheelchair-court.jpg",
+      kicker: "轮椅篮球 · 同一片场地",
+      title: "想赢的心",
+      note: "身体有边界，想赢的心没有；同一片场地，同样的竞争。",
+      layout: "wide",
+      position: "center 45%",
+    },
+    {
+      src: "images/memories/wheelchair-joy.jpg",
+      kicker: "轮椅篮球 · 笑一个",
+      title: "快乐不需要定义",
+      note: "球进不进都笑，下一球再来；快乐本身就很完整。",
+      layout: "portrait-right",
+      position: "center 40%",
+    },
+    {
+      src: "images/memories/sky-jump.jpg",
+      kicker: "街头 · 起跳",
+      title: "飞一会儿",
+      note: "地面留不住想往上走的人；哪怕只有一秒。",
+      layout: "portrait-left",
+      position: "center 40%",
+    },
+    {
+      src: "images/memories/indoor-rhythm.jpg",
+      kicker: "室内 · 球落地",
+      title: "把一天收回来",
+      note: "球落地的声音，替人把一天慢慢收好；明天再来。",
+      layout: "left",
+      position: "center 45%",
+    },
   ];
 
-  const ORDER = [];
-  for (let cycle = 0; cycle < 2; cycle += 1) {
-    for (let index = 0; index < MEMORIES.length; index += 1) {
-      ORDER.push(index);
-    }
-  }
-  ORDER.splice(8, 0, 0);
-  ORDER.splice(17, 0, 1);
+  const ORDER = [
+    0, 5, 1, 6, 2, 20, 3, 23, 4, 13,
+    7, 10, 18, 25, 22, 11, 12, 15, 24, 17,
+    14, 16, 21, 19, 26, 8, 9,
+  ];
+  ORDER.splice(13, 0, 0);
+  ORDER.splice(24, 0, 1);
 
   const createSlide = (memory, index) => {
     const slide = document.createElement("div");
@@ -975,7 +1110,7 @@
 
     const frame = document.createElement("div");
     frame.className = "memory-frame";
-    frame.style.backgroundImage = `url("${memory.src}")`;
+    frame.dataset.src = memory.src;
     frame.style.backgroundPosition = memory.position;
 
     const copy = document.createElement("div");
@@ -1002,7 +1137,21 @@
     createSlide(MEMORIES[memoryIndex], slideIndex),
   );
 
+  const prepare = (index) => {
+    const slide = slides[index];
+    if (!slide) return;
+
+    const frame = slide.querySelector(".memory-frame");
+    if (frame && !frame.style.backgroundImage) {
+      frame.style.backgroundImage = `url("${frame.dataset.src}")`;
+    }
+  };
+
   const show = (index) => {
+    prepare(index);
+    prepare((index + 1) % slides.length);
+    prepare((index + 2) % slides.length);
+
     slides.forEach((slide, slideIndex) => {
       slide.classList.toggle("is-active", slideIndex === index);
     });
@@ -1029,6 +1178,8 @@
   setInterval(() => {
     if (
       document.hidden ||
+      !desktop.matches ||
+      !stage.childElementCount ||
       homeView?.hidden ||
       document.documentElement.classList.contains("dialog-open")
     ) {
